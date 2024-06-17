@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Fetcher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="https://compcit.com/">Home</a></li>
+                <li><a href="https://compcit.com/about/">About</a></li>
+                <li><a href="https://compcit.com/contact/">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>News Fetcher</h1>
+        <h3>We Stand With Palestine</h3>
+        <form action="/news" method="post">
+            <input type="text" name="query" placeholder="Search for news...">
+            <input type="submit" value="Get News">
+        </form>
+        {% if articles %}
+            <div class="articles">
+                {% for article in articles %}
+                    <div class="article">
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.description }}</p>
+                        <a href="{{ article.url }}" target="_blank">Read more</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </main>
+    <footer>
+        <p>Powered by <a href="https://compcit.com/">CompcIT.com</a></p>
+    </footer>
+</body>
+</html>
